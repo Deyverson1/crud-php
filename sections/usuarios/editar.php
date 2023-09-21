@@ -19,7 +19,6 @@ if ($_POST) {
     $usuario = (isset($_POST["usuario"]) ? $_POST["usuario"] : "");
     $password = (isset($_POST["password"]) ? $_POST["password"] : "");
     $correo = (isset($_POST["correo"]) ? $_POST["correo"] : "");
-
     // Preparar la inserción de los datos
     $sentencia = $conexion->prepare("UPDATE tbl_usuarios SET
     usuario=:usuario,
@@ -27,7 +26,6 @@ if ($_POST) {
     correo=:correo
     WHERE id=:id
     ");
-
     // Asigna valores que tienen uso de :variables
     $sentencia = $conexion->prepare("UPDATE tbl_usuarios SET
     usuario=:usuario,
@@ -39,23 +37,17 @@ if ($_POST) {
     $sentencia->bindParam(":password", $password);
     $sentencia->bindParam(":correo", $correo);
     $sentencia->bindParam(":id", $txtID);
-
-
-
     // Ejecutar la consulta
     $sentencia->execute();
     $mensaje= "Registro actualizado";
     header("Location:index.php?mensaje=".$mensaje); 
 }
 
-
 ?>
 
 <?php include("../../templates/header.php"); ?> 
 <!-- Insertando el header -->
-
 <br>
-
 <div class="card">
     <div class="card-header">
         Datos del usuario
@@ -63,7 +55,6 @@ if ($_POST) {
     <div class="card-body">
         <!-- Username -->
         <form action="" method="post" enctype="multipart/form-data">
-
     <div class="mb-3">
         <label for="txtID" class="form-label">ID:</label>
         <input type="text"
@@ -104,8 +95,6 @@ if ($_POST) {
         </form>
     </div>
 </div>
-
-
 
 <?php include("../../templates/footer.php"); ?> 
 <!-- Insertando el footer -->
